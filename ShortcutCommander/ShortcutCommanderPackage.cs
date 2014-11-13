@@ -204,7 +204,7 @@ namespace Techmatic.ShortcutCommander
                                     var space = " " + Convert.ToChar(160) + " ";
                                     for (var i = 0; i < shortcuts.Length; i++)
                                     {
-                                        if (i < shortcuts.Length - 1 && i > 0)
+                                        if (i > 0)
                                         {
                                             contentInlines.Add(new Run(space + " or " + space));
                                         }

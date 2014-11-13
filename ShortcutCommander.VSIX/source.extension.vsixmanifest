@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="ShortcutCommander.VSIX..eb5da78e-b955-4897-a31e-74e0a7ff1638" Version="1.7" Language="en-US" Publisher="Mathias Lorenzen" />
+    <Identity Id="ShortcutCommander.VSIX..eb5da78e-b955-4897-a31e-74e0a7ff1638" Version="1.8" Language="en-US" Publisher="Mathias Lorenzen" />
     <DisplayName>Shortcut commander</DisplayName>
     <Description xml:space="preserve">The Shortcut Commander package for Visual Studio.</Description>
   </Metadata>
