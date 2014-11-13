@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Input;
 
 using Debugger = System.Diagnostics.Debugger;
+using System.Windows;
 
 namespace Techmatic.ShortcutCommander
 {
