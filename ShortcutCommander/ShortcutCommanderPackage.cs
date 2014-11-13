@@ -87,6 +87,46 @@ namespace Techmatic.ShortcutCommander
                             lock(typeof(ShortcutCommanderPackage))
                             {
 
+                                foreach (var shortcut in shortcuts)
+                                {
+                                    var shortcutActive = true;
+                                    var shortcutKeys = shortcut.Split('+');
+
+                                    foreach (var shortcutKey in shortcutKeys)
+                                    {
+                                        Keys keys;
+                                        switch (shortcutKey)
+                                        {
+                                            case "Bkspce":
+                                                keys = Keys.Back;
+                                                break;
+
+                                            case "Del":
+                                                keys = Keys.Delete;
+                                                break;
+
+                                            case "Ins":
+                                                keys = Keys.Insert;
+                                                break;
+
+                                            case "PgDn":
+                                                keys = Keys.PageDown;
+                                                break;
+
+                                            case "PgUp":
+                                                keys = Keys.PageUp;
+                                                break;
+
+                                            default:
+                                                if (!Enum.TryParse(shortcut, out keys))
+                                                {
+                                                    continue;
+                                                }
+                                                break;
+                                        }
+                                    }
+                                }
+
                                 if (window != null)
                                 {
                                     window.Close();
