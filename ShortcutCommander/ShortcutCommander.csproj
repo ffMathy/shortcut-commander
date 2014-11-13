@@ -136,6 +136,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ShortcutCommanderPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WindowsServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
