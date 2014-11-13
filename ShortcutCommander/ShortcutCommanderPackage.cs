@@ -134,7 +134,6 @@ namespace Techmatic.ShortcutCommander
                                 }
 
                                 window = new HotkeyWindow();
-                                window.NameBlock.Text = objCommand.Name;
 
                                 var contentBlock = window.ContentBlock;
                                 var contentInlines = contentBlock.Inlines;
@@ -145,18 +144,11 @@ namespace Techmatic.ShortcutCommander
                                 var space = " " + Convert.ToChar(160) + " ";
                                 for (var i = 0; i < shortcuts.Length; i++)
                                 {
-                                    if (i == shortcuts.Length - 1 && i > 0)
+                                    if (i < shortcuts.Length - 1 && i > 0)
                                     {
-                                        contentInlines.Add(new Run("or " + space));
+                                        contentInlines.Add(new Run(space + " or " + space));
                                     }
                                     contentInlines.Add(new Run(shortcuts[i]) { Foreground = Brushes.White });
-                                    if (i > 0 && i <= shortcuts.Length - 2)
-                                    {
-                                        contentInlines.Add(new Run("," + space));
-                                    } else
-                                    {
-                                        contentInlines.Add(new Run(space));
-                                    }
                                 }
 
                                 window.Show();
