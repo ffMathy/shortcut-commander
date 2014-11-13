@@ -3,17 +3,14 @@ using System.Linq;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.InteropServices;
-using System.ComponentModel.Design;
-using Microsoft.Win32;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using System.Collections.Generic;
 using EnvDTE;
-using System.Windows.Forms;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Input;
+
+using Debugger = System.Diagnostics.Debugger;
 
 namespace Techmatic.ShortcutCommander
 {
@@ -84,74 +81,138 @@ namespace Techmatic.ShortcutCommander
                         if (shortcuts.Any())
                         {
 
-                            lock(typeof(ShortcutCommanderPackage))
+                            lock (typeof(ShortcutCommanderPackage))
                             {
 
+                                var shortcutActive = false;
                                 foreach (var shortcut in shortcuts)
                                 {
-                                    var shortcutActive = true;
-                                    var shortcutKeys = shortcut.Split('+');
+                                    var sequenceActive = false;
 
-                                    foreach (var shortcutKey in shortcutKeys)
+                                    var shortcutSequences = shortcut.Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+                                    foreach (var shortcutSequence in shortcutSequences)
                                     {
-                                        Keys keys;
-                                        switch (shortcutKey)
+
+                                        var keyActive = true;
+                                        var shortcutKeys = shortcutSequence.Split('+');
+
+                                        foreach (var shortcutKey in shortcutKeys)
                                         {
-                                            case "Bkspce":
-                                                keys = Keys.Back;
-                                                break;
+                                            Key key;
+                                            switch (shortcutKey)
+                                            {
+                                                case "Ctrl":
+                                                    key = Key.LeftCtrl;
+                                                    break;
 
-                                            case "Del":
-                                                keys = Keys.Delete;
-                                                break;
+                                                case "Alt":
+                                                    key = Key.LeftAlt;
+                                                    break;
 
-                                            case "Ins":
-                                                keys = Keys.Insert;
-                                                break;
+                                                case "Shift":
+                                                    key = Key.LeftShift;
+                                                    break;
 
-                                            case "PgDn":
-                                                keys = Keys.PageDown;
-                                                break;
+                                                case "Bkspce":
+                                                    key = Key.Back;
+                                                    break;
 
-                                            case "PgUp":
-                                                keys = Keys.PageUp;
-                                                break;
+                                                case "Del":
+                                                    key = Key.Delete;
+                                                    break;
 
-                                            default:
-                                                if (!Enum.TryParse(shortcut, out keys))
-                                                {
-                                                    continue;
-                                                }
+                                                case "Ins":
+                                                    key = Key.Insert;
+                                                    break;
+
+                                                case "PgDn":
+                                                    key = Key.PageDown;
+                                                    break;
+
+                                                case "PgUp":
+                                                    key = Key.PageUp;
+                                                    break;
+
+                                                case "Down Arrow":
+                                                    key = Key.Down;
+                                                    break;
+
+                                                case "Up Arrow":
+                                                    key = Key.Up;
+                                                    break;
+
+                                                case "Left Arrow":
+                                                    key = Key.Left;
+                                                    break;
+
+                                                case "Right Arrow":
+                                                    key = Key.Right;
+                                                    break;
+
+                                                default:
+                                                    if (!Enum.TryParse(shortcutKey, out key))
+                                                    {
+                                                        if (Debugger.IsAttached)
+                                                        {
+                                                            Debugger.Break();
+                                                        }
+                                                        continue;
+                                                    }
+                                                    break;
+                                            }
+
+                                            if (!Keyboard.IsKeyDown(key))
+                                            {
+                                                keyActive = false;
                                                 break;
+                                            }
+
+                                        }
+
+                                        if (keyActive)
+                                        {
+                                            sequenceActive = true;
+                                            break;
                                         }
                                     }
-                                }
 
-                                if (window != null)
-                                {
-                                    window.Close();
-                                    window = null;
-                                }
-
-                                window = new HotkeyWindow();
-
-                                var contentBlock = window.ContentBlock;
-                                var contentInlines = contentBlock.Inlines;
-
-                                contentBlock.Text = null;
-                                contentInlines.Clear();
-
-                                var space = " " + Convert.ToChar(160) + " ";
-                                for (var i = 0; i < shortcuts.Length; i++)
-                                {
-                                    if (i < shortcuts.Length - 1 && i > 0)
+                                    if (sequenceActive)
                                     {
-                                        contentInlines.Add(new Run(space + " or " + space));
+                                        shortcutActive = true;
+                                        break;
                                     }
-                                    contentInlines.Add(new Run(shortcuts[i]) { Foreground = Brushes.White });
                                 }
 
-                                window.Show();
+                                if (!shortcutActive)
+                                {
+
+                                    if (window != null)
+                                    {
+                                        window.Close();
+                                        window = null;
+                                    }
+
+                                    window = new HotkeyWindow();
+
+                                    var contentBlock = window.ContentBlock;
+                                    var contentInlines = contentBlock.Inlines;
+
+                                    contentBlock.Text = null;
+                                    contentInlines.Clear();
+
+                                    var space = " " + Convert.ToChar(160) + " ";
+                                    for (var i = 0; i < shortcuts.Length; i++)
+                                    {
+                                        if (i < shortcuts.Length - 1 && i > 0)
+                                        {
+                                            contentInlines.Add(new Run(space + " or " + space));
+                                        }
+                                        contentInlines.Add(new Run(shortcuts[i]) { Foreground = Brushes.White });
+                                    }
+
+                                    window.Show();
+
+                                }
 
                             }
 

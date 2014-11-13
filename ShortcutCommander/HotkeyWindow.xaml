@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Techmatic.ShortcutCommander" Topmost="True" ShowActivated="False" ShowInTaskbar="False"
         mc:Ignorable="d" WindowStyle="None" WindowStartupLocation="CenterScreen" IsHitTestVisible="False" Background="Transparent" AllowsTransparency="True" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Grid>
-        <Border CornerRadius="20" Background="#99111111">
+        <Border CornerRadius="20" Background="#CC111111">
             <StackPanel>
                 <TextBlock Foreground="White" TextAlignment="Center" Opacity="0.75" Text="Command text here" FontSize="20" Margin="20" Name="ContentBlock" />
             </StackPanel>
