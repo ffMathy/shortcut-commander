@@ -40,6 +40,8 @@ namespace Techmatic.ShortcutCommander
         [ContextStatic]
         private static CommandEvents commandEvents;
 
+        private static HotkeyWindow window;
+
         /// <summary>
         /// Default constructor of the package.
         /// Inside this method you can place any initialization code that does not require 
@@ -70,9 +72,9 @@ namespace Techmatic.ShortcutCommander
             var m_objDTE = (DTE)GetService(typeof(DTE));
             commandEvents = m_objDTE.Events.CommandEvents;
 
-            commandEvents.AfterExecute += delegate (string Guid, int ID, object CustomIn, object CustomOut)
+            commandEvents.BeforeExecute += delegate (string Guid, int ID, object CustomIn, object CustomOut, ref bool CancelDefault)
             {
-                var objCommand = (Command)m_objDTE.Commands.Item(Guid, ID);
+                var objCommand = m_objDTE.Commands.Item(Guid, ID);
                 if (objCommand != null)
                 {
                     var bindings = objCommand.Bindings as object[];
@@ -82,27 +84,43 @@ namespace Techmatic.ShortcutCommander
                         if (shortcuts.Any())
                         {
 
-                            var window = new HotkeyWindow();
-                            var block = window.ContentBlock;
-                            var inlines = block.Inlines;
-
-                            block.Text = null;
-                            inlines.Clear();
-
-                            for (var i = 0; i < shortcuts.Length; i++)
+                            lock(typeof(ShortcutCommanderPackage))
                             {
-                                if (i == shortcuts.Length - 1 && i > 0)
+
+                                if (window != null)
                                 {
-                                    inlines.Add(new Run(" or "));
-                                }
-                                inlines.Add(new Run(shortcuts[i]) { Foreground = Brushes.White });
-                                if (i > 0 && i <= shortcuts.Length - 2)
+                                    window.Hide();
+                                } else
                                 {
-                                    inlines.Add(new Run(", "));
+                                    window = new HotkeyWindow();
                                 }
+
+                                window.NameBlock.Text = objCommand.Name;
+
+                                var contentBlock = window.ContentBlock;
+                                var contentInlines = contentBlock.Inlines;
+
+                                contentBlock.Text = null;
+                                contentInlines.Clear();
+
+                                var space = " " + Convert.ToChar(160) + " ";
+                                for (var i = 0; i < shortcuts.Length; i++)
+                                {
+                                    if (i == shortcuts.Length - 1 && i > 0)
+                                    {
+                                        contentInlines.Add(new Run(space + " or " + space));
+                                    }
+                                    contentInlines.Add(new Run(shortcuts[i]) { Foreground = Brushes.White });
+                                    if (i > 0 && i <= shortcuts.Length - 2)
+                                    {
+                                        contentInlines.Add(new Run(", " + space));
+                                    }
+                                }
+
+                                window.Show();
+
                             }
 
-                            window.Show();
                         }
                     }
                 }

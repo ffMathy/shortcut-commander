@@ -28,7 +28,7 @@ namespace Techmatic.ShortcutCommander
         public async void CloseAfterSomeTime()
         {
             await Task.Delay(5000);
-            Close();
+            Hide();
         }
     }
 }
