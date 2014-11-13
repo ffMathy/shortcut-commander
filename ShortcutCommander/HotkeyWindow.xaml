@@ -8,8 +8,8 @@
     <Grid>
         <Border CornerRadius="20" Background="#33000000">
             <StackPanel>
-                <TextBlock Foreground="Gray" Text="Command text here" FontSize="20" Margin="20,20,20,0" Name="ContentBlock" />
-                <TextBlock Foreground="Gray" TextAlignment="Center" Opacity="0.5" Text="Command name here" FontSize="14" Margin="20,0,20,20" Name="NameBlock" />
+                <TextBlock Foreground="Gray" TextAlignment="Center" Text="Command text here" FontSize="20" Margin="20,20,20,5" Name="ContentBlock" />
+                <TextBlock Foreground="Gray" TextAlignment="Center" Opacity="0.5" Text="Command name here" FontSize="14" Margin="20,5,20,20" Name="NameBlock" />
             </StackPanel>
         </Border>
     </Grid>
