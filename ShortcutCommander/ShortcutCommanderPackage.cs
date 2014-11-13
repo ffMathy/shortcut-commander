@@ -113,7 +113,7 @@ namespace Techmatic.ShortcutCommander
                                     contentInlines.Add(new Run(shortcuts[i]) { Foreground = Brushes.White });
                                     if (i > 0 && i <= shortcuts.Length - 2)
                                     {
-                                        contentInlines.Add(new Run(", " + space));
+                                        contentInlines.Add(new Run(","));
                                     }
                                 }
 
