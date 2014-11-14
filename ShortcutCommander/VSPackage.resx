@@ -129,10 +129,10 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="110" xml:space="preserve">
-    <value>ShortcutCommander</value>
+    <value>Shortcut commander</value>
   </data>
   <data name="112" xml:space="preserve">
-    <value>Teaches you how to use shortcuts and hotkeys in Visual Studio.</value>
+    <value>Allows you to learn all Visual Studio shortcuts by presenting the shortcuts or hotkeys for you as you use the regular menus and buttons.</value>
   </data>
   <data name="400" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Package.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

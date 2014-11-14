@@ -3,15 +3,19 @@ using System.Linq;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using System.ComponentModel.Design;
+using Microsoft.Win32;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
-using System.Collections.Generic;
 using EnvDTE;
+using System.Windows.Input;
+using Debugger = System.Diagnostics.Debugger;
+using System.Collections.Generic;
 using System.Windows.Documents;
 using System.Windows.Media;
-using System.Windows.Input;
-
-using Debugger = System.Diagnostics.Debugger;
-using System.Windows;
+using System.Windows.Controls;
 
 namespace Techmatic.ShortcutCommander
 {
@@ -70,7 +74,7 @@ namespace Techmatic.ShortcutCommander
             var m_objDTE = (DTE)GetService(typeof(DTE));
             commandEvents = m_objDTE.Events.CommandEvents;
 
-            commandEvents.BeforeExecute += delegate (string Guid, int ID, object CustomIn, object CustomOut, ref bool CancelDefault)
+            commandEvents.BeforeExecute += delegate(string Guid, int ID, object CustomIn, object CustomOut, ref bool CancelDefault)
             {
                 var objCommand = m_objDTE.Commands.Item(Guid, ID);
                 if (objCommand != null)
@@ -195,20 +199,17 @@ namespace Techmatic.ShortcutCommander
 
                                     window = new HotkeyWindow();
 
-                                    var contentBlock = window.ContentBlock;
-                                    var contentInlines = contentBlock.Inlines;
-
-                                    contentBlock.Text = null;
-                                    contentInlines.Clear();
+                                    var contentBlock = window.CommandText.Children;
+                                    contentBlock.Clear();
 
                                     var space = " " + Convert.ToChar(160) + " ";
                                     for (var i = 0; i < shortcuts.Length; i++)
                                     {
                                         if (i > 0)
                                         {
-                                            contentInlines.Add(new Run(space + " or " + space));
+                                            contentBlock.Add(new TextBlock(new Run(space + " or " + space)) { Opacity = 0.5 });
                                         }
-                                        contentInlines.Add(new Run(shortcuts[i]) { Foreground = Brushes.White });
+                                        contentBlock.Add(new TextBlock(new Run(shortcuts[i])));
                                     }
 
                                     window.Show();
@@ -223,9 +224,13 @@ namespace Techmatic.ShortcutCommander
             };
 
         }
-
         #endregion
 
+        /// <summary>
+        /// Borrowed from Mads Kristensen's wonderful Visual Studio Shortcuts tool (http://visualstudioshortcuts.com).
+        /// </summary>
+        /// <param name="bindings"></param>
+        /// <returns></returns>
         private static string[] GetBindings(IEnumerable<object> bindings)
         {
             var result = bindings.Select(binding => binding.ToString().IndexOf("::") >= 0

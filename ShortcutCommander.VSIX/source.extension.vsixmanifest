@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="ShortcutCommander.VSIX..eb5da78e-b955-4897-a31e-74e0a7ff1638" Version="1.8" Language="en-US" Publisher="Mathias Lorenzen" />
-    <DisplayName>Shortcut commander</DisplayName>
-    <Description xml:space="preserve">The Shortcut Commander package for Visual Studio.</Description>
+    <Identity Id="ShortcutCommander.VSIX..56323777-fe33-4b3c-a61b-4423688c1dbd" Version="1.10" Language="en-US" Publisher="Mathias Lorenzen" />
+    <DisplayName>ShortcutCommander.VSIX</DisplayName>
+    <Description xml:space="preserve">Helps you learning Visual Studio hotkeys by showing them as you need them.</Description>
   </Metadata>
   <Installation>
-    <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[13.0,20.0]" />
-    <InstallationTarget Version="[13.0,20.0]" Id="Microsoft.VisualStudio.IntegratedShell" />
-    <InstallationTarget Version="[13.0,20.0]" Id="Microsoft.VisualStudio.Premium" />
-    <InstallationTarget Version="[13.0,20.0]" Id="Microsoft.VisualStudio.Ultimate" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[11.0,]" />
+    <InstallationTarget Version="[11.0,]" Id="Microsoft.VisualStudio.IntegratedShell" />
+    <InstallationTarget Version="[11.0,]" Id="Microsoft.VisualStudio.Premium" />
+    <InstallationTarget Version="[11.0,]" Id="Microsoft.VisualStudio.Ultimate" />
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
   </Dependencies>
   <Assets>
-    <Asset d:Source="Project" d:ProjectName="ShortcutCommander" Type="Microsoft.VisualStudio.VsPackage" Path="|ShortcutCommander;PkgdefProjectOutputGroup|" />
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="ShortcutCommander" Path="|ShortcutCommander;PkgdefProjectOutputGroup|" />
   </Assets>
 </PackageManifest>
