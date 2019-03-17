@@ -2,7 +2,7 @@
 // MUST match guids.h
 using System;
 
-namespace Techmatic.ShortcutCommander
+namespace ShortcutCommander
 {
     static class GuidList
     {

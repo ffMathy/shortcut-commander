@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28711.60
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortcutCommander", "ShortcutCommander\ShortcutCommander.csproj", "{7FA7AA81-1945-4832-97E8-6A524DF2FA04}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortcutCommander.VSIX", "ShortcutCommander.VSIX\ShortcutCommander.VSIX.csproj", "{84B6FAB0-E643-412C-825C-85AB5F418C74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +15,11 @@ Global
 		{7FA7AA81-1945-4832-97E8-6A524DF2FA04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FA7AA81-1945-4832-97E8-6A524DF2FA04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FA7AA81-1945-4832-97E8-6A524DF2FA04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84B6FAB0-E643-412C-825C-85AB5F418C74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84B6FAB0-E643-412C-825C-85AB5F418C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84B6FAB0-E643-412C-825C-85AB5F418C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84B6FAB0-E643-412C-825C-85AB5F418C74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3F64AE7-961B-4235-B34B-2B4946678857}
 	EndGlobalSection
 EndGlobal

@@ -3,21 +3,20 @@ using System.Linq;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.InteropServices;
-using System.ComponentModel.Design;
-using Microsoft.Win32;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using EnvDTE;
 using System.Windows.Input;
+using Key = System.Windows.Input.Key;
 using Debugger = System.Diagnostics.Debugger;
 using System.Collections.Generic;
 using System.Windows.Documents;
-using System.Windows.Media;
 using System.Windows.Controls;
+using Microsoft;
+using System.Threading;
+using System.Threading.Tasks;
+using Task = System.Threading.Tasks.Task;
 
-namespace Techmatic.ShortcutCommander
+namespace ShortcutCommander
 {
     /// <summary>
     /// This is the class that implements the package exposed by this assembly.
@@ -31,13 +30,13 @@ namespace Techmatic.ShortcutCommander
     /// </summary>
     // This attribute tells the PkgDef creation utility (CreatePkgDef.exe) that this class is
     // a package.
-    [PackageRegistration(UseManagedResourcesOnly = true)]
+    [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     // This attribute is used to register the information needed to show this package
     // in the Help/About dialog of Visual Studio.
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [Guid(GuidList.guidShortcutCommanderPkgString)]
-    [ProvideAutoLoad("ADFC4E64-0397-11D1-9F4E-00A0C911004F")]
-    public sealed class ShortcutCommanderPackage : Package
+    [ProvideAutoLoad("ADFC4E64-0397-11D1-9F4E-00A0C911004F", flags: PackageAutoLoadFlags.BackgroundLoad)]
+    public sealed class ShortcutCommanderPackage : AsyncPackage
     {
         [ContextStatic]
         private static CommandEvents commandEvents;
@@ -60,22 +59,28 @@ namespace Techmatic.ShortcutCommander
 
         /////////////////////////////////////////////////////////////////////////////
         // Overridden Package Implementation
-        #region Package Members
+        #region Package Member
 
         /// <summary>
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
         /// where you can put all the initialization code that rely on services provided by VisualStudio.
         /// </summary>
-        protected override void Initialize()
+        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
+            await JoinableTaskFactory.SwitchToMainThreadAsync(DisposalToken);
+
             Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.ToString()));
             base.Initialize();
 
             var m_objDTE = (DTE)GetService(typeof(DTE));
+            Assumes.Present(m_objDTE);
+
             commandEvents = m_objDTE.Events.CommandEvents;
 
             commandEvents.BeforeExecute += delegate(string Guid, int ID, object CustomIn, object CustomOut, ref bool CancelDefault)
             {
+                ThreadHelper.ThrowIfNotOnUIThread();
+
                 var objCommand = m_objDTE.Commands.Item(Guid, ID);
                 if (objCommand != null)
                 {
@@ -222,7 +227,6 @@ namespace Techmatic.ShortcutCommander
                     }
                 }
             };
-
         }
         #endregion
 

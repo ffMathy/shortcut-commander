@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
-namespace Techmatic.ShortcutCommander
+namespace ShortcutCommander
 {
     /// <summary>
     /// Interaction logic for HotkeyWindow.xaml
@@ -23,10 +13,10 @@ namespace Techmatic.ShortcutCommander
         public HotkeyWindow()
         {
             InitializeComponent();
-            CloseAfterSomeTime();
+            CloseAfterSomeTimeAsync();
         }
 
-        public async void CloseAfterSomeTime()
+        public async Task CloseAfterSomeTimeAsync()
         {
             await Task.Delay(5000);
             Close();
