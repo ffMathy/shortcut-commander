@@ -13,8 +13,8 @@
     <ProjectGuid>{7FA7AA81-1945-4832-97E8-6A524DF2FA04}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VSIXProject1</RootNamespace>
-    <AssemblyName>VSIXProject1</AssemblyName>
+    <RootNamespace>ShortcutCommander</RootNamespace>
+    <AssemblyName>ShortcutCommander</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <UseCodebase>true</UseCodebase>
