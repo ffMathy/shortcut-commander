@@ -1,7 +1,6 @@
-shortcut-commander
-==================
+This extension coaches you and teaches you all the Visual Studio hotkeys slowly, by showing you the hotkey of any action you invoke.
 
-A package for Visual Studio which will coach you in using hotkeys instead of the mouse, by telling you what the hotkeys for specific things are as you trigger them with your mouse.
+It could be that you wanted to click the "comment line" button. In that case, this plugin will briefly (in a non-disturbing semi-transparent manner) show "CTRL + K, C" in a dialog for 5 seconds, allowing you to memorize the hotkey for the action.
 
 https://marketplace.visualstudio.com/items?itemName=MathiasLykkegaardLorenzen.ShortcutCommanderVSIX
 
