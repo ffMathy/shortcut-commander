@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="ShortcutCommanderV17.VSIX..b4643393-5c87-4361-a82f-4f703d5ef732" Version="2.0" Language="en-US" Publisher="Mathias Lorenzen" />
+    <DisplayName>Shortcut commander</DisplayName>
+    <Description xml:space="preserve">Allows you to learn all Visual Studio shortcuts by presenting the shortcuts or hotkeys for you as you use the regular menus and buttons.</Description>
+    <MoreInfo>https://github.com/ffMathy/shortcut-commander</MoreInfo>
+    <Icon>Icon.ico</Icon>
+    <PreviewImage>Screenshot.png</PreviewImage>
+  </Metadata>
+  <Installation InstalledByMsi="false">
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0,18.0)">
+      <ProductArchitecture>amd64</ProductArchitecture>
+    </InstallationTarget>
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+  </Dependencies>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,18.0)" DisplayName="Visual Studio core editor" />
+  </Prerequisites>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+  </Assets>
+</PackageManifest>
