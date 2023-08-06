@@ -72,7 +72,7 @@ namespace ShortcutCommander
             Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.ToString()));
             base.Initialize();
 
-            var m_objDTE = (DTE)GetService(typeof(DTE));
+            var m_objDTE = (DTE)await GetServiceAsync(typeof(DTE));
             Assumes.Present(m_objDTE);
 
             commandEvents = m_objDTE.Events.CommandEvents;

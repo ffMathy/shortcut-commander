@@ -1,25 +1,44 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28711.60
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortcutCommander", "ShortcutCommander.csproj", "{7FA7AA81-1945-4832-97E8-6A524DF2FA04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortcutCommander", "ShortcutCommander\ShortcutCommander.csproj", "{7FA7AA81-1945-4832-97E8-6A524DF2FA04}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ShortcutCommanderShared", "ShortcutCommanderShared\ShortcutCommanderShared.shproj", "{2866FD0C-2816-452D-9219-4F5916174C15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortcutCommanderV17", "ShortcutCommanderV17\ShortcutCommanderV17.csproj", "{2A0AB458-25F3-49D9-A26D-2AA0BB583A99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7FA7AA81-1945-4832-97E8-6A524DF2FA04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7FA7AA81-1945-4832-97E8-6A524DF2FA04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FA7AA81-1945-4832-97E8-6A524DF2FA04}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{7FA7AA81-1945-4832-97E8-6A524DF2FA04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FA7AA81-1945-4832-97E8-6A524DF2FA04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FA7AA81-1945-4832-97E8-6A524DF2FA04}.Release|x64.ActiveCfg = Release|Any CPU
+		{2A0AB458-25F3-49D9-A26D-2AA0BB583A99}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{2A0AB458-25F3-49D9-A26D-2AA0BB583A99}.Debug|x64.ActiveCfg = Debug|x64
+		{2A0AB458-25F3-49D9-A26D-2AA0BB583A99}.Debug|x64.Build.0 = Debug|x64
+		{2A0AB458-25F3-49D9-A26D-2AA0BB583A99}.Release|Any CPU.ActiveCfg = Release|x64
+		{2A0AB458-25F3-49D9-A26D-2AA0BB583A99}.Release|x64.ActiveCfg = Release|x64
+		{2A0AB458-25F3-49D9-A26D-2AA0BB583A99}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3F64AE7-961B-4235-B34B-2B4946678857}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ShortcutCommanderShared\ShortcutCommanderShared.projitems*{2866fd0c-2816-452d-9219-4f5916174c15}*SharedItemsImports = 13
+		ShortcutCommanderShared\ShortcutCommanderShared.projitems*{2a0ab458-25f3-49d9-a26d-2aa0bb583a99}*SharedItemsImports = 4
+		ShortcutCommanderShared\ShortcutCommanderShared.projitems*{7fa7aa81-1945-4832-97e8-6a524df2fa04}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

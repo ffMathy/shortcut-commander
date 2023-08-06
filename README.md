@@ -4,4 +4,4 @@ It could be that you wanted to click the "comment line" button. In that case, th
 
 https://marketplace.visualstudio.com/items?itemName=MathiasLykkegaardLorenzen.ShortcutCommanderVSIX
 
-![Screenshot](https://github.com/ffMathy/shortcut-commander/raw/master/src/HowItWorks.gif)
+![Screenshot](https://github.com/ffMathy/shortcut-commander/raw/master/Doc/HowItWorks.gif)
